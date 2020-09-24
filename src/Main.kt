@@ -6,10 +6,10 @@ fun main() {
     biblioteca.addLivro(Livro("LIV001", "Mindset", "Carol Dweck", 2006, 35.0, 5.0)) // Código duplicado
 
     val colecao = Colecao("COL001", "Coleção Vagalume", "23/09/2020")
-    colecao.addLivro(Livro("LIV003", "A Turma da Rua Quinze", "Marçal Aquino", 1990, 30.0, 5.0))
-    colecao.addLivro(Livro("LIV004", "O Rapto do Garoto de Ouro", "Marcos Rey", 1982, 33.0, 5.0))
-    colecao.addLivro(Livro("LIV005", "O Mistério do Cinco Estrelas", "Marcos Rey", 1981, 29.0, 5.0))
-    colecao.addLivro(Livro("LIV006", "O Escaravelho do Diabo", "Lúcia Machado de Almeida", 1974, 31.0, 5.0))
+    colecao.addLivro(Livro("LIV004", "A Turma da Rua Quinze", "Marçal Aquino", 1990, 30.0, 5.0))
+    colecao.addLivro(Livro("LIV005", "O Rapto do Garoto de Ouro", "Marcos Rey", 1982, 33.0, 5.0))
+    colecao.addLivro(Livro("LIV006", "O Mistério do Cinco Estrelas", "Marcos Rey", 1981, 29.0, 5.0))
+    colecao.addLivro(Livro("LIV007", "O Escaravelho do Diabo", "Lúcia Machado de Almeida", 1974, 31.0, 5.0))
 
     biblioteca.addColecao(colecao)
 
