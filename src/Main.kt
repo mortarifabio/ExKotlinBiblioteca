@@ -25,8 +25,10 @@ fun main() {
     val cliente = Cliente("Cesar","65765765-5")
 
     biblioteca.alugarLivro("LIV002", funcionario, cliente)
+    biblioteca.alugarLivro("LIV001", funcionario, cliente)
     biblioteca.venderColecao("COL001", funcionario, cliente)
+    biblioteca.devolverLivro("LIV002")
 
-    biblioteca.consultarLivros() // Consulta vazia retorna todos
+    biblioteca.consultarLivros()
     biblioteca.verificarEstoque() // Relatório de Estoque
 }

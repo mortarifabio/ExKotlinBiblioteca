@@ -67,32 +67,64 @@ class Biblioteca (
     }
 
     fun alugarLivro(codigo: String, funcionario: Funcionario, cliente: Cliente){
-        val livro = livros.getValue(codigo)
-        livro?.let {
-            if(livro.status == 'D'){
+        try {
+            val livro = livros.getValue(codigo)
+            if (livro.status == 'D') {
                 livro.status = 'A'
                 funcionario.livrosAlugados.put(livro.codigo, livro)
                 cliente.livrosAlugados.put(livro.codigo, livro)
                 println("Livro '${livro.titulo}' alugado por ${funcionario.nome} para ${cliente.nome}")
-            }else{
+            } else {
                 println("O livro '${livro.titulo}' não está disponível para locação.")
             }
-        } ?: println("O livro não existe.")
+        } catch(exception: NoSuchElementException) {
+            println("O livro não existe.")
+        }
     }
 
     fun alugarColecao(codigo: String, funcionario: Funcionario, cliente: Cliente){
-        val colecao = colecoes.getValue(codigo)
-        colecao?.let {
+        try {
+            val colecao = colecoes.getValue(codigo)
             if(colecao.status == 'D'){
                 colecao.status = 'A'
                 colecao.livros.forEach { t, u ->
                     alugarLivro(t, funcionario, cliente)
                 }
                 println("Coleção '${colecao.nome}' alugada por ${funcionario.nome} para ${cliente.nome}")
-            }else{
+            } else {
                 println("A coleção '${colecao.nome}' não está disponível para locação.")
             }
-        } ?: println("A coleção não existe.")
+        } catch(exception: NoSuchElementException) {
+            println("A coleção não existe.")
+        }
+    }
+
+    fun devolverLivro(codigo: String){
+        try {
+            val livro = livros.getValue(codigo)
+            if(livro.status == 'A'){
+                livro.status = 'D'
+                println("Livro '${livro.titulo}' devolvido.")
+            } else {
+                println("Devolução não realizada: o livro '${livro.titulo}' não está alugado.")
+            }
+        } catch(exception: NoSuchElementException) {
+            println("O livro não existe.")
+        }
+    }
+
+    fun devolverColecao(codigo: String){
+        try {
+            val colecao = colecoes.getValue(codigo)
+            if(colecao.status == 'A'){
+                colecao.status = 'D'
+                println("Coleção '${colecao.nome}' devolvida.")
+            } else {
+                println("Devolução não realizada: a coleção '${colecao.nome}' não está alugado.")
+            }
+        } catch(exception: NoSuchElementException) {
+            println("A coleção não existe.")
+        }
     }
 
     fun venderLivro(codigo: String, funcionario: Funcionario, cliente: Cliente) {
